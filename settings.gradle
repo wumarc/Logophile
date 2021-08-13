@@ -1,0 +1,2 @@
+rootProject.name = "logophile"
+include ':app'

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "205523396252",
+    "project_id": "logophile-a5e0c",
+    "storage_bucket": "logophile-a5e0c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:205523396252:android:52d1b1043142f62ae92f59",
+        "android_client_info": {
+          "package_name": "com.example.logophile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "205523396252-apqkbcq4srl5j9d0lj2l0bi6entm257s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoE0sSU2waVgtXdpd9IHN6Ng-U-Bl_Fk8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "205523396252-apqkbcq4srl5j9d0lj2l0bi6entm257s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

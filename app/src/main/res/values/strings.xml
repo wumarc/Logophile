@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Logophile</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="list">List</string>
+    <string name="practice">Practice</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="practice_fragment">Practice Fragment</string>
+    <string name="list_fragment">List Fragment</string>
+    <string name="dashboard_fragment">Dashboard Fragment</string>
+    <string name="word">Word</string>
+</resources>

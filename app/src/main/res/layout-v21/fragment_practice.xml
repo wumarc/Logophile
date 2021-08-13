@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center|bottom"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/practice_word"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_35sdp"
+        android:layout_marginBottom="@dimen/_60sdp"
+        android:text="Word" />
+
+    <TextView
+        android:id="@+id/word_definition"
+        android:layout_width="@dimen/_235sdp"
+        android:layout_height="@dimen/_120sdp"
+        android:layout_marginBottom="@dimen/_160sdp"
+        android:text="Oxford dictionary" />
+
+<!--    <LinearLayout-->
+<!--        android:orientation="vertical"-->
+<!--        android:layout_marginBottom="@dimen/_160sdp"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content" >-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="My own definition" />-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Dictionary.com" />-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Meriam-webster" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/cambridge_definition"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Cambridge" />-->
+<!--    </LinearLayout>-->
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/iknow_button"
+            android:layout_width="@dimen/_158sdp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/green"
+            android:text="I know"
+            android:textSize="@dimen/_23sdp" />
+
+        <Button
+            android:id="@+id/idont_button"
+            android:layout_width="@dimen/_158sdp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/red"
+            android:text="I don't"
+            android:textSize="@dimen/_23sdp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
