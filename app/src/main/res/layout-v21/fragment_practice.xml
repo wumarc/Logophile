@@ -10,44 +10,61 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/_35sdp"
-        android:layout_marginBottom="@dimen/_60sdp"
-        android:text="Word" />
+        android:layout_marginBottom="@dimen/_28sdp" />
 
-    <TextView
-        android:id="@+id/word_definition"
-        android:layout_width="@dimen/_235sdp"
-        android:layout_height="@dimen/_120sdp"
-        android:layout_marginBottom="@dimen/_160sdp"
-        android:text="Oxford dictionary" />
+    <LinearLayout
+        android:id="@+id/definition_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_30sdp"
+        android:orientation="vertical">
 
-<!--    <LinearLayout-->
-<!--        android:orientation="vertical"-->
-<!--        android:layout_marginBottom="@dimen/_160sdp"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content" >-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/your_own_definition" />
+        <TextView
+            android:id="@+id/own_definition"
+            android:textSize="@dimen/_14sdp"
+            android:layout_width="@dimen/_270sdp"
+            android:layout_height="@dimen/_70sdp"
+            android:background="@drawable/definition_border"
+            android:layout_marginBottom="@dimen/_10sdp" />
 
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="My own definition" />-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/oxford_dictionary" />
+        <TextView
+            android:id="@+id/oxford_definition"
+            android:background="@drawable/definition_border"
+            android:textSize="@dimen/_14sdp"
+            android:layout_width="@dimen/_270sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_height="@dimen/_70sdp" />
 
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Dictionary.com" />-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/merriam_webster_dictionary" />
+        <TextView
+            android:id="@+id/merriam_webster_definition"
+            android:layout_width="@dimen/_270sdp"
+            android:layout_height="@dimen/_70sdp"
+            android:textSize="@dimen/_14sdp"
+            android:background="@drawable/definition_border"
+            android:layout_marginBottom="@dimen/_50sdp" />
 
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Meriam-webster" />-->
+    </LinearLayout>
 
-<!--        <TextView-->
-<!--            android:id="@+id/cambridge_definition"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Cambridge" />-->
-<!--    </LinearLayout>-->
-
+    <Button
+        android:id="@+id/finish_button"
+        android:layout_width="match_parent"
+        android:backgroundTint="@color/green"
+        android:layout_height="@dimen/_40sdp"
+        android:textAlignment="center"
+        android:textSize="@dimen/_20sdp"
+        android:text="FINISH" />
 
     <LinearLayout
         android:layout_width="wrap_content"

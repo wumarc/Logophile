@@ -1,6 +1,5 @@
 package com.example.logophile.Class;
 import android.os.AsyncTask;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -9,26 +8,23 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 
-public class OxfordDictionaryRequest extends AsyncTask<String, Void, String> {
 
-    final String app_id = "4e70043f";
-    final String app_key = "33b360fc6c382e1de7b73cfb52d18061";
+public class MerriamWebsterDictionaryRequest extends AsyncTask<String, Void, String> {
+
     public AsyncResponse delegate;
 
-    public OxfordDictionaryRequest(AsyncResponse delegate) {
+    public MerriamWebsterDictionaryRequest(AsyncResponse delegate) {
         this.delegate = delegate;
     }
 
     @Override
-    protected String doInBackground(String... params) {
+    protected String doInBackground(String... word) {
         try {
-            URL url = new URL(params[0]);
+            URL url = new URL((word[0]));
             HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
-            urlConnection.setRequestProperty("Accept","application/json");
-            urlConnection.setRequestProperty("app_id", app_id);
-            urlConnection.setRequestProperty("app_key", app_key);
+            urlConnection.setRequestMethod("GET");
 
-            // read the output from the server
+            // Store the output into a buffer from the server get request
             BufferedReader reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
             StringBuilder stringBuilder = new StringBuilder();
 
@@ -47,8 +43,8 @@ public class OxfordDictionaryRequest extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
         try {
-            JSONObject jsonObject = new JSONObject(result);
-            JSONArray definition = jsonObject.getJSONArray("results").getJSONObject(0).getJSONArray("lexicalEntries").getJSONObject(0).getJSONArray("entries").getJSONObject(0).getJSONArray("senses").getJSONObject(0).getJSONArray("definitions");
+            JSONArray rootArray = new JSONArray(result);
+            JSONArray definition = rootArray.getJSONObject(0).getJSONArray("shortdef");
             delegate.processFinished(definition.getString(0));
         } catch (JSONException e) {
             delegate.processFinished("Definition not found");

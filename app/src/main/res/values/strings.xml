@@ -10,4 +10,7 @@
     <string name="list_fragment">List Fragment</string>
     <string name="dashboard_fragment">Dashboard Fragment</string>
     <string name="word">Word</string>
+    <string name="oxford_dictionary">Oxford Dictionary</string>
+    <string name="merriam_webster_dictionary">Merriam-Webster Dictionary</string>
+    <string name="your_own_definition">Your own definition</string>
 </resources>
