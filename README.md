@@ -10,7 +10,7 @@
 ## Features
 Logophile lets you:
 
-* Add new words and practice them with flashcard
+* Add new words and practice them with flashcards
 * Assign a score to each word as you practice
 
 ## Screenshots
