@@ -1,38 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center|bottom"
-    android:orientation="vertical" >
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/practice_word"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/_35sdp" />
+        android:textSize="@dimen/_35sdp"
+        android:text="Word"
+        android:layout_marginBottom="@dimen/_28sdp" />
 
-<!--    <TextView-->
-<!--        android:id="@+id/word_type"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Word type"-->
-<!--        android:layout_marginBottom="@dimen/_20sdp"-->
-<!--        android:textSize="@dimen/_10sdp" />-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Familiarity Level: " />
+
+        <TextView
+            android:id="@+id/value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"/>
+
+    </LinearLayout>
+
+
+    <SeekBar
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:id="@+id/seek_bar"
+        android:max="20"
+        android:layout_width="@dimen/_250sdp"
+        android:layout_height="@dimen/_20sdp" />
 
     <LinearLayout
         android:id="@+id/definition_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_30sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/your_own_definition" />
-        <TextView
+        <EditText
             android:id="@+id/own_definition"
             android:scrollbars="vertical"
+            android:gravity="top|left"
             android:textSize="@dimen/_14sdp"
             android:layout_width="@dimen/_270sdp"
             android:layout_height="@dimen/_70sdp"
@@ -63,41 +83,34 @@
             android:layout_height="@dimen/_70sdp"
             android:textSize="@dimen/_14sdp"
             android:background="@drawable/definition_border"
-            android:layout_marginBottom="@dimen/_50sdp" />
+            android:layout_marginBottom="@dimen/_10sdp" />
 
     </LinearLayout>
 
     <Button
-        android:id="@+id/finish_button"
-        android:layout_width="match_parent"
-        android:backgroundTint="@color/green"
-        android:layout_height="@dimen/_40sdp"
-        android:textAlignment="center"
-        android:textSize="@dimen/_20sdp"
-        android:text="FINISH" />
-
-    <LinearLayout
+        android:id="@+id/edit_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:text="Edit" />
+
+    <LinearLayout
+        android:id="@+id/edit_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
 
         <Button
-            android:id="@+id/iknow_button"
-            android:layout_width="@dimen/_158sdp"
+            android:id="@+id/delete_button"
+            android:layout_marginRight="@dimen/_7sdp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/green"
-            android:text="I know"
-            android:textSize="@dimen/_23sdp" />
+            android:text="Delete" />
 
         <Button
-            android:id="@+id/idont_button"
-            android:layout_width="@dimen/_158sdp"
+            android:id="@+id/save_button"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/red"
-            android:text="I don't"
-            android:textSize="@dimen/_23sdp" />
+            android:text="Save" />
 
     </LinearLayout>
-
 
 </LinearLayout>

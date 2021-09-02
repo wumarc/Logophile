@@ -6,8 +6,8 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.ArrayList;
 import javax.net.ssl.HttpsURLConnection;
-
 
 public class MerriamWebsterDictionaryRequest extends AsyncTask<String, Void, String> {
 
@@ -45,7 +45,7 @@ public class MerriamWebsterDictionaryRequest extends AsyncTask<String, Void, Str
         try {
             JSONArray rootArray = new JSONArray(result);
             JSONArray definition = rootArray.getJSONObject(0).getJSONArray("shortdef");
-            delegate.processFinished(definition.getString(0));
+            delegate.processFinished(definition.getString(0).substring(0,1).toUpperCase() + definition.getString(0).substring(1));
         } catch (JSONException e) {
             delegate.processFinished("Definition not found");
             e.printStackTrace();

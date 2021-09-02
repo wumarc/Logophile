@@ -1,6 +1,5 @@
 package com.example.logophile.Class;
 import android.os.AsyncTask;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -49,12 +48,13 @@ public class OxfordDictionaryRequest extends AsyncTask<String, Void, String> {
         try {
             JSONObject jsonObject = new JSONObject(result);
             JSONArray definition = jsonObject.getJSONArray("results").getJSONObject(0).getJSONArray("lexicalEntries").getJSONObject(0).getJSONArray("entries").getJSONObject(0).getJSONArray("senses").getJSONObject(0).getJSONArray("definitions");
-            delegate.processFinished(definition.getString(0));
+            delegate.processFinished(definition.getString(0).substring(0,1).toUpperCase() + definition.getString(0).substring(1));
         } catch (JSONException e) {
             delegate.processFinished("Definition not found");
             e.printStackTrace();
         }
     }
+
 
     public interface AsyncResponse {
         void processFinished(String output);

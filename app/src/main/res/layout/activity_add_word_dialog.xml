@@ -9,10 +9,11 @@
     <EditText
         android:id="@+id/word"
         android:maxLines="1"
+        android:singleLine="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:maxLength="20"
+        android:maxLength="50"
         android:hint="@string/word" />
 
     <EditText
@@ -20,8 +21,10 @@
         android:inputType="text"
         android:maxLines="1"
         android:layout_width="match_parent"
+        android:singleLine="true"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:hint="Definition (optional)" />
+        android:maxLength="150"
+        android:hint="@string/definition_optional" />
 
 </LinearLayout>

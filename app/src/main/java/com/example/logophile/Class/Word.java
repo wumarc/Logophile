@@ -1,15 +1,15 @@
 package com.example.logophile.Class;
 
-public class Word {
+public class Word implements Comparable {
 
-    String word;
-    String yourOwnDefinition;
-    int confidenceLevel = 0; // scale of 1 to 20 which 20 is the word can be archived
+    private String word;
+    private String yourOwnDefinition;
+    private int knowledgeLevel = 0;
 
     public Word(String word, String yourOwnDefinition, int confidenceLevel) {
         this.word = word;
         this.yourOwnDefinition = yourOwnDefinition;
-        this.confidenceLevel = confidenceLevel;
+        this.knowledgeLevel = confidenceLevel;
     }
 
     public Word() {}
@@ -30,24 +30,29 @@ public class Word {
         this.yourOwnDefinition = yourOwnDefinition;
     }
 
-    public int getConfidenceLevel() {
-        return confidenceLevel;
+    public int getKnowledgeLevel() {
+        return knowledgeLevel;
     }
 
-    public void setConfidenceLevel(int confidenceLevel) {
-        this.confidenceLevel = confidenceLevel;
+    public void setKnowledgeLevel(int knowledgeLevel) {
+        this.knowledgeLevel = knowledgeLevel;
     }
 
     public void increaseConfidenceLevel() {
-        if (this.confidenceLevel < 20) {
-            this.confidenceLevel++;
+        if (this.knowledgeLevel < 20) {
+            this.knowledgeLevel++;
         }
     }
 
     public void decreaseConfidenceLevel() {
-        if (this.confidenceLevel > 0) {
-            this.confidenceLevel--;
+        if (this.knowledgeLevel > 0) {
+            this.knowledgeLevel--;
         }
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return word.compareTo(((Word)o).getWord());
     }
 
 }

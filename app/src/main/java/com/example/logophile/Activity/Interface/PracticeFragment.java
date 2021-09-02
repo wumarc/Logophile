@@ -1,5 +1,6 @@
-package com.example.logophile.Activity.Fragment;
+package com.example.logophile.Activity.Interface;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import com.example.logophile.Class.MerriamWebsterDictionaryRequest;
 import com.example.logophile.Class.OxfordDictionaryRequest;
 import com.example.logophile.Class.Word;
 import com.example.logophile.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,10 +25,16 @@ import java.util.Random;
 public class PracticeFragment extends Fragment {
 
     LinearLayout definitionLayout;
-    TextView iKnow, iDont, finish, word, yourOwnDefinition, oxfordDefinition, merriamWebsterDefinition;
-    DatabaseReference wordDbRef = FirebaseDatabase.getInstance().getReference("word");
+    TextView iKnow, iDont, finish, word, yourOwnDefinition, wordType, oxfordDefinition, merriamWebsterDefinition;
+    String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+    DatabaseReference wordDbRef = FirebaseDatabase.getInstance().getReference(uid);
     ArrayList<String> keys = new ArrayList<String>();
     ArrayList<Word> wordsList = new ArrayList<Word>();
+    ArrayList<Integer> fourty = new ArrayList<>();
+    ArrayList<Integer> twenty = new ArrayList<>();
+    ArrayList<Integer> fifteen = new ArrayList<>();
+    ArrayList<Integer> ten = new ArrayList<>();
+    ArrayList<Integer> five = new ArrayList<>();
     String currentKey;
     boolean first = true;
 
@@ -39,21 +47,24 @@ public class PracticeFragment extends Fragment {
         iKnow = view.findViewById(R.id.iknow_button);
         finish = view.findViewById(R.id.finish_button);
         word = view.findViewById(R.id.practice_word);
+//        wordType = view.findViewById(R.id.word_type);
         definitionLayout = view.findViewById(R.id.definition_layout);
         yourOwnDefinition = view.findViewById(R.id.own_definition);
         oxfordDefinition = view.findViewById(R.id.oxford_definition);
         merriamWebsterDefinition = view.findViewById(R.id.merriam_webster_definition);
-
+        oxfordDefinition.setMovementMethod(new ScrollingMovementMethod());
+        merriamWebsterDefinition.setMovementMethod(new ScrollingMovementMethod());
+        yourOwnDefinition.setMovementMethod(new ScrollingMovementMethod());
         showFinishButton(false);
 
-        wordDbRef.addValueEventListener(new ValueEventListener() {
+        wordDbRef.child("word").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot itemSnapshot : snapshot.getChildren()) {
-                    String keyValue = itemSnapshot.getKey();
                     Word word = itemSnapshot.getValue(Word.class);
                     wordsList.add(word);
                     keys.add(itemSnapshot.getKey());
+                    sortWord(word.getKnowledgeLevel(), wordsList.indexOf(word));
                 }
                 if (first) {
                     displayNextWord();
@@ -65,26 +76,24 @@ public class PracticeFragment extends Fragment {
         });
 
         iKnow.setOnClickListener(v -> {
-            // record the previous word to increase confidence level
             Word updatedWord = wordsList.get(keys.indexOf(currentKey));
             updatedWord.increaseConfidenceLevel();
-            wordDbRef.child(currentKey).setValue(updatedWord);
+            wordDbRef.child("word").child(currentKey).setValue(updatedWord);
             displayNextWord();
         });
 
         iDont.setOnClickListener(v -> {
-                showFinishButton(true);
+            showFinishButton(true);
+            // Decrease confidence level then show the definition
+            Word updatedWord = wordsList.get(keys.indexOf(currentKey));
+            updatedWord.decreaseConfidenceLevel();
+            wordDbRef.child("word").child(currentKey).setValue(updatedWord);
 
-                // Decrease confidence level then show the definition
-                Word updatedWord = wordsList.get(keys.indexOf(currentKey));
-                updatedWord.decreaseConfidenceLevel();
-                wordDbRef.child(currentKey).setValue(updatedWord);
-
-                // Request API data to show the definition
-                yourOwnDefinition.setText(updatedWord.getYourOwnDefinition());
-                new OxfordDictionaryRequest(output -> oxfordDefinition.setText(output)).execute(oxfordDictionaryEntries(wordsList.get(keys.indexOf(currentKey)).getWord()));
-                new MerriamWebsterDictionaryRequest(output -> merriamWebsterDefinition.setText(output)).execute(merriamRequestEntries(wordsList.get(keys.indexOf(currentKey)).getWord()));
-            });
+            // Request API data to show the definition TODO get the word type
+            new OxfordDictionaryRequest(output -> oxfordDefinition.setText(output)).execute(oxfordDictionaryEntries(wordsList.get(keys.indexOf(currentKey)).getWord()));
+            new MerriamWebsterDictionaryRequest(output -> merriamWebsterDefinition.setText(output)).execute(merriamRequestEntries(wordsList.get(keys.indexOf(currentKey)).getWord()));
+            yourOwnDefinition.setText(updatedWord.getYourOwnDefinition());
+        });
 
         finish.setOnClickListener(v -> {
             showFinishButton(false);
@@ -116,8 +125,27 @@ public class PracticeFragment extends Fragment {
         } else {
             if (wordsList.size() == 1) {
                 randomWordIndex = 0;
-            } else {
-                randomWordIndex = new Random().nextInt(wordsList.size()-1);
+            } else { //determine which subarray to pick the word from
+                randomWordIndex = new Random().nextInt(100);
+                ArrayList selected;
+                if (randomWordIndex >= 0 && randomWordIndex <= 39) { //40%
+                    selected = fourty;
+                } else if (randomWordIndex >= 40 && randomWordIndex <= 64) { //25%
+                    selected = twenty;
+                } else if (randomWordIndex >= 65 && randomWordIndex <= 85) { //20%
+                    selected = fifteen;
+                } else if (randomWordIndex >= 86 && randomWordIndex <= 95) { //10%
+                    selected = ten;
+                } else { //5%
+                    selected = five;
+                }
+                //pick a word from the subarray which will return an index from wordsList
+                if (selected.size() - 1 < 0) { //TODO fix temporary solution
+                    randomWordIndex = new Random().nextInt(fourty.size()-1);
+                } else {
+                    randomWordIndex = new Random().nextInt(selected.size()-1);
+                }
+
             }
             currentKey = keys.get(randomWordIndex);
             String nextWord = wordsList.get(randomWordIndex).getWord().substring(0, 1).toUpperCase() + wordsList.get(randomWordIndex).getWord().substring(1);
@@ -127,7 +155,6 @@ public class PracticeFragment extends Fragment {
             oxfordDefinition.setText(null);
             yourOwnDefinition.setText(null);
             merriamWebsterDefinition.setText(null);
-
         }
     }
 
@@ -142,6 +169,20 @@ public class PracticeFragment extends Fragment {
             definitionLayout.setVisibility(View.INVISIBLE);
             iKnow.setVisibility(View.VISIBLE);
             iDont.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void sortWord(int score, int wordIndex) {
+        if (0 <= score && score <= 4) {
+            fourty.add(wordIndex);
+        } else if (5 <= score && score <= 8) {
+            twenty.add(wordIndex);
+        } else if (9 <= score && score <= 12) {
+            fifteen.add(wordIndex);
+        } else if (13 <= score && score <= 17) {
+            ten.add(wordIndex);
+        } else {
+            five.add(wordIndex);
         }
     }
 

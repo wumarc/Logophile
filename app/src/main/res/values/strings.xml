@@ -13,4 +13,5 @@
     <string name="oxford_dictionary">Oxford Dictionary</string>
     <string name="merriam_webster_dictionary">Merriam-Webster Dictionary</string>
     <string name="your_own_definition">Your own definition</string>
+    <string name="definition_optional">Definition (optional)</string>
 </resources>

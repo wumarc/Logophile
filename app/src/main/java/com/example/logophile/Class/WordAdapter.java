@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,6 +23,10 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.ViewHolder> {
         this.context = context;
     }
 
+    public WordAdapter(ArrayList<Word> wordsList) {
+        this.wordsList = wordsList;
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -31,12 +36,12 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.ViewHolder> {
         return new ViewHolder(view, listener);
     }
 
-
     @Override
     public void onBindViewHolder(@NonNull WordAdapter.ViewHolder holder, int position) {
         Word word = wordsList.get(position);
         holder.setIsRecyclable(false);
         holder.word.setText(word.getWord());
+        holder.score.setText(String.valueOf(word.getKnowledgeLevel()));
     }
 
     public int getItemCount() {
@@ -47,13 +52,18 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.ViewHolder> {
         void onItemClick(int position);
     }
 
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView word;
+        private TextView word, score;
 
         public ViewHolder(View view, final OnItemClickListener listener) {
             super(view);
             word = view.findViewById(R.id.word_in_adapter);
+            score = view.findViewById(R.id.score_level);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

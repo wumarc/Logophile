@@ -17,6 +17,7 @@
         android:orientation="vertical">
 
         <ImageView
+            android:src="@drawable/icon"
             android:layout_width="@dimen/_100sdp"
             android:layout_height="@dimen/_100sdp"
             android:layout_marginBottom="@dimen/_20sdp" />

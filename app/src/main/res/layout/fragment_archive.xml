@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:layout_height="match_parent" >
+
+
+    <TextView
+        android:textSize="@dimen/_20sdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Coming soon!" />
+
+
+<!--    <TextView-->
+<!--        android:layout_width="@dimen/_50sdp"-->
+<!--        android:layout_height="@dimen/_25sdp"-->
+<!--        android:layout_marginLeft="@dimen/_6sdp"-->
+<!--        android:gravity="center|start"-->
+<!--        android:textSize="@dimen/_20sdp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:text="Word" />-->
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/archive_recycler_view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:background="@drawable/word_border"-->
+<!--        android:layout_height="match_parent" />-->
+
+</LinearLayout>
