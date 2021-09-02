@@ -14,4 +14,4 @@ Logophile lets you:
 * Assign a score to each word as you practice
 
 ## Screenshots
-<img src="https://github.com/wumarc/Logophile/blob/master/media/phone%20screenshoots/Screenshot_1630536033.png" width="230" /> <img src="https://github.com/wumarc/Logophile/blob/master/media/phone%20screenshoots/Screenshot_1630536178.png" width="230" /> <img src="https://github.com/wumarc/Logophile/blob/master/media/phone%20screenshoots/Screenshot_1630536053.png" width="230" />
+<img src="https://github.com/wumarc/Logophile/blob/master/media/phone%20screenshoots/Screenshot_1630536033.png" width="250" /> <img src="https://github.com/wumarc/Logophile/blob/master/media/phone%20screenshoots/Screenshot_1630536178.png" width="250" /> <img src="https://github.com/wumarc/Logophile/blob/master/media/phone%20screenshoots/Screenshot_1630536053.png" width="250" />
